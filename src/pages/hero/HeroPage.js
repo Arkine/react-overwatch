@@ -25,9 +25,11 @@ export default class HeroPage extends React.Component {
 	render() {
 		const { hero } = this.state;
 
-		if (hero === undefined) {
+		if (!hero) {
 			return (
-				<span className="loading">Loading hero...</span>
+				<main className="single Hero">
+					<div className="loading-modal">Loading hero...</div>
+				</main>
 			);
 		}
 
@@ -38,29 +40,33 @@ export default class HeroPage extends React.Component {
 					</div>
 
 					<div className="Hero__column Hero__column--right">
+
 						<div className="Hero__header">
 							<h1 className="Hero__title">
 								{hero.name}
 							</h1>
-							<span className="Hero__role">Role: {hero.role.name}</span>
-							<div className="Hero__meta">
-								<span className="Hero__meta--item">Health: {hero.health}</span>
-								<span className="Hero__meta--item">Armour: {hero.armour}</span>
-								<span className="Hero__meta--item">Shield: {hero.shield}</span>
+						</div>
+
+						<div className="Hero__meta">
+							<span className="Hero__meta--item role">Role: {hero.role.name}</span>
+							<span className="Hero__meta--item health">Health: {hero.health}</span>
+							<span className="Hero__meta--item armour">Armour: {hero.armour}</span>
+							<span className="Hero__meta--item shield">Shield: {hero.shield}</span>
+						</div>
+
+						<div className="Hero__desc">
+							<WysiwygBlock>
+								{hero.description}
+							</WysiwygBlock>
+						</div>
+
+						<div className="Hero__abilities">
+						{hero.abilities.map((ability, index) => (
+							<div className="Hero__ability" key={index}>
+								<span className="Hero__ability__title">{ability.name}</span>
+								<div className="Hero__ability__desc">{ability.description}</div>
 							</div>
-							<div className="Hero__desc">
-								<WysiwygBlock>
-									{hero.description}
-								</WysiwygBlock>
-							</div>
-							<div className="Hero__abilities">
-							{hero.abilities.map((ability, index) => (
-								<div className="Hero__ability" key={index}>
-									<span className="Hero__ability__title">{ability.name}</span>
-									<div className="Hero__ability__desc">{ability.description}</div>
-								</div>
-							))}
-							</div>
+						))}
 						</div>
 
 					</div>
