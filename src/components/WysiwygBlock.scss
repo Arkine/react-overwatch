@@ -1,0 +1,9 @@
+.Wysiwyg-block {
+	display: flex;
+	justify-content: center;
+
+	&__wrapper {
+		width: 100%;
+		max-width: 56rem;
+	}
+}

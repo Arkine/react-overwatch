@@ -1,0 +1,31 @@
+.Hero-card {
+	position: relative;
+
+	background-color: #ccc;
+
+	&__wrapper {
+		display: grid;
+		grid-template-columns: 150px 1fr;
+
+		width: 100%;
+	}
+
+	&__img {
+		background-color: blue;
+		background-position: center;
+		background-size: cover;
+		background-repeat: no-repeat;
+	}
+
+	&__meta {
+		display: flex;
+		flex-flow: column wrap;
+
+		padding: 1rem;
+	}
+
+	&__title {
+		text-align: left;
+		margin-top: 0;
+	}
+}
