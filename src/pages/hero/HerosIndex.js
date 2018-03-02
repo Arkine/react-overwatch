@@ -48,10 +48,8 @@ export default class HerosPage extends React.Component {
 		return (
 			<main className="index Heros">
 				<section className="Heros-list">
-					<TransitionGroup className="herosList">
-						<div className="Heros-list__wrapper">
-							{items}
-						</div>
+					<TransitionGroup className="Heros-list__wrapper">
+						{items}
 					</TransitionGroup>
 				</section>
 			</main>
