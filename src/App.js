@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-import {TransitionGroup, CSSTransition} from 'react-transition-group';
-
 import Header from './layouts/Header';
 
 import routes from './server/routes';

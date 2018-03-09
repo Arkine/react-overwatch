@@ -2,8 +2,18 @@
 	display: flex;
 	justify-content: center;
 
+	padding: 0;
+
 	&__wrapper {
 		width: 100%;
 		max-width: 56rem;
+	}
+
+	p {
+		margin: 1rem 0;
+	}
+
+	h1, h2, h3, h4, h5, h6 {
+		margin: 1rem 0;
 	}
 }

@@ -10,7 +10,7 @@ export default class HeroPage extends React.Component {
 	};
 
 	componentWillMount() {
-		const { heroId } = this.props.match.params
+		const { heroId } = this.props.match.params;
 
 		const hero = Hero.getHeroById(heroId);
 

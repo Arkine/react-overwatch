@@ -6,8 +6,6 @@ import { Hero } from '../../services/hero/HeroAPI';
 
 import {TransitionGroup, CSSTransition} from 'react-transition-group';
 
-import { FadeAndSlideTransition } from '../../anims/FadeIn';
-
 import './HeroList.css';
 
 export default class HerosPage extends React.Component {
@@ -27,23 +25,23 @@ export default class HerosPage extends React.Component {
 	render() {
 		const { heros } = this.state;
 
-
 		let items;
-		if (heros.data) {
-
-			items = heros.data.map( (hero, index) => (
-				<CSSTransition
-				    in={true}
-				    key={index}
-				    timeout={1000}
-				    classNames="fade"
-				  >
-					<HeroCard
-						data={hero}
-					/>
-				</CSSTransition>
-			));
+		if (!heros.data) {
+			return (<div className="loading-modal">Loading Heros...</div>)
 		}
+
+		items = heros.data.map( (hero, index) => (
+			<CSSTransition
+			    in={true}
+			    key={index}
+			    timeout={1000}
+			    classNames="fade"
+			  >
+				<HeroCard
+					data={hero}
+				/>
+			</CSSTransition>
+		));
 
 		return (
 			<main className="index Heros">
