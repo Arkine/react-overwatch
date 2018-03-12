@@ -17,6 +17,7 @@ class HeroAPI {
 	}
 
 	async getAllHeros() {
+		console.log('Fetching all heros...');
 		try {
 			const resp = await (fetch(`${config.API.hero.baseUrl}/hero`));
 

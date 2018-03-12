@@ -1,35 +1,41 @@
 import React from 'react';
-
-import HeroCard from './HeroCard';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import PropTypes from 'prop-types';
 
 import { Hero } from '../../services/hero/HeroAPI';
+import * as heroActions from '../../components/actions/heros';
+
+import HeroCard from './HeroCard';
 
 import {TransitionGroup, CSSTransition} from 'react-transition-group';
 
 import './HeroList.css';
 
-export default class HerosPage extends React.Component {
+class HerosPage extends React.Component {
 	state = {
 		"heros": []
 	}
 
 	componentWillMount() {
-		const data = Hero.getAllHeros();
-		data.then(results => {
+		console.log(this.state)
+		const getHeros = this.props.heroActions.fetchAllHeros();
+
+		getHeros.then(results => {
 			this.setState({
-				"heros": results
+				"heros": results.heros.data
 			});
-		});
+		})
 	}
 
 	render() {
 		const { heros } = this.state;
 
-		let items;
 		if (!heros.data) {
 			return (<div className="loading-modal">Loading Heros...</div>)
 		}
 
+		let items;
 		items = heros.data.map( (hero, index) => (
 			<CSSTransition
 			    in={true}
@@ -54,3 +60,26 @@ export default class HerosPage extends React.Component {
 		);
 	}
 }
+
+HerosPage.propTypes = {
+	heros: PropTypes.array,
+	heroActions: PropTypes.object
+}
+
+function mapStateToProps(state) {
+
+	return {
+		heros: state.heros
+	}
+}
+
+function mapDispatchToProps(dispatch) {
+	return {
+		heroActions: bindActionCreators(heroActions, dispatch)
+	}
+}
+
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(HerosPage);
